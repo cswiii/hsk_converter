@@ -103,8 +103,7 @@ for row in reader:
   """
   converted_english_definition = english_definition.replace(";","<BR> ")
   """ Merge pinyin and english sections. """
-  merged_pinyin_english = converted_pinyin + "<hr width=\"10%\">" + converted_english_definition
-  merged_pinyin_english = converted_pinyin + " " + converted_english_definition
+  merged_pinyin_english = converted_pinyin + "<br>" + converted_english_definition
 
   """ TODO: Output data to a file. """
   final_rawtext = converted_chinese_character + "; " + merged_pinyin_english
