@@ -36,10 +36,11 @@ sys.setdefaultencoding('utf-8')
 
 def get_tone(s):
    m = re.search(r'\d+$', s)
-   return int(m.group()) if m else None
+   return int(m.group()) if m else "" 
 
 def colorize_phrase(p):
   """ Italicise and colorize pinyin. """
+
   wordsplit = []
   colored_word= ""
   wordsplit = p.split(' ')
@@ -65,7 +66,7 @@ except IOError as e:
 # These are, I suspect, in turn based on the Dummitt color model for associating
 # a color with a tone. 
 # See <http://blog.ningin.com/2008/10/16/learning-chinese-through-tone-color-and-nathan-dummitt/>
-accent_dic = {1:'red', 2:'orange', 3:'green', 4:'blue', 5:'black'}
+accent_dic = {1:'red', 2:'orange', 3:'green', 4:'blue', 5:'black', "":'black'}
 data_records = []
 chinese_character = []
 pinyin = []
@@ -88,15 +89,15 @@ print "# Based on The lists compiled by Lingomi [ref: http://lingomi.com/blog/hs
 print "# Source for this list: " ,sys.argv[1] , ""
 print "# Original vocabulary lists licensed CC-BY-SA"
 for row in reader:
-  difficulty_unused = row[1]
-  chinese_character = row[2].decode('utf8')
-  pinyin = row[3].decode('utf8')
-  english_definition = row[4].decode('utf8')
+  difficulty_unused = row[0]
+  chinese_character = row[1].decode('utf8')
+  pinyin = row[2].decode('utf8')
+  english_definition = row[3].decode('utf8')
   """ Enlarge Chinese Character """
   converted_chinese_character = "<p style=\"font-size:100px\">" + chinese_character + "</p>"
   converted_chinese_character.encode('utf8')
   """ Italicise and colorize pinyin. """
-  converted_pinyin = "<i>" + colorize_phrase(pinyin) + "</i>"
+  converted_pinyin =  colorize_phrase(pinyin)
   """ As to not confuse the parser, we will convert semicolons that
   separate english definitions to newlines>.
   """
