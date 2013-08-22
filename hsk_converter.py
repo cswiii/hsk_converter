@@ -58,7 +58,7 @@ if len(sys.argv) == 1:
 try:
    open(sys.argv[1])
 except IOError as e:
-   print 'Vacabulary file "', sys.argv[1], '" not found.  Check the location and try again.'
+   print 'Vocabulary file "', sys.argv[1], '" not found.  Check the location and try again.'
    sys.exit(1)
 
 # The accent colors here are based on another list I'd been using.
